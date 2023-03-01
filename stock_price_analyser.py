@@ -24,3 +24,33 @@ st.write(f"""
 """)
 
 st.dataframe(ticker_df)
+
+## showcasing line charts
+
+st.write(
+    """
+    ## Daily Closing Prices on a Line Chart:
+    """
+)
+
+st.line_chart(ticker_df.Close)
+
+st.write(
+    """
+    ## Daily Volume Prices on a Line Chart:
+    """
+)
+
+st.line_chart(ticker_df.Volume)
+
+## Layout
+
+col1, col2 = st.columns(2)
+
+with col1:
+    st.header('Daily Closing Prices on a Line Chart')
+    st.line_chart(ticker_df.Close)
+with col2:
+    st.header('Daily Volume Prices on a Line Chart')
+    st.line_chart(ticker_df.Volume)
+    
