@@ -12,7 +12,7 @@ st.write(
     """
 )
 
-#ticker_symbol = 'AAPL'
+# Take input from user
 
 ticker_symbol = st.text_input(
     'Enter stock symbol',
@@ -20,10 +20,20 @@ ticker_symbol = st.text_input(
     key='placeholder'
 )
 
+col1, col2 = st.columns(2)
+## Start date
+with col1:
+    start_date = st.date_input('Input the starting date',
+                               datetime.date(2019,1,1))
+## End date
+with col2:
+    end_date = st.date_input('Input the ending date',
+                              datetime.date(2022,12,31))
+
 ticker_data = yf.Ticker(ticker_symbol)
 ticker_df = ticker_data.history(period='1d',
-                                start='2019-01-01',
-                                end='2023-02-14')
+                                start=f'{start_date}',
+                                end=f'{end_date}')
 
 st.write(f"""
     ### {ticker_symbol}' stock price info:
