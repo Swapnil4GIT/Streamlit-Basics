@@ -12,7 +12,13 @@ st.write(
     """
 )
 
-ticker_symbol = 'AAPL'
+#ticker_symbol = 'AAPL'
+
+ticker_symbol = st.text_input(
+    'Enter stock symbol',
+    'AAPL',
+    key='placeholder'
+)
 
 ticker_data = yf.Ticker(ticker_symbol)
 ticker_df = ticker_data.history(period='1d',
@@ -53,4 +59,3 @@ with col1:
 with col2:
     st.header('Daily Volume Prices on a Line Chart')
     st.line_chart(ticker_df.Volume)
-    
